@@ -176,6 +176,12 @@ If the user requests changes during review:
 
 > A phase is NOT approved until the user explicitly approves it.
 
+### 2.7 📝 Documentation Rule
+
+> **প্রতিটি Phase বা গুরুত্বপূর্ণ Bug Fix শেষ হওয়ার পর, পরবর্তী কাজে যাওয়ার আগে AI কে অবশ্যই `docs/PROJECT_STATE.md` এবং `README.md` ফাইল দুটি আপডেট করতে হবে।**
+
+This ensures that the project history, architectural decisions, and key bug fixes are always documented and never lost, while keeping the main repository documentation (README) perfectly up-to-date.
+
 ---
 
 ## 3. 📋 Requirement-First Rule

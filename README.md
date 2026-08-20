@@ -1,58 +1,124 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# ✈️ Travel Agency Admin Website
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![Status](https://img.shields.io/badge/status-active-success) ![Type](https://img.shields.io/badge/type-internal_admin-blue) ![Stack](https://img.shields.io/badge/stack-Laravel_13_%2B_Vue_3-red)
 
-## About Laravel
+A secure, scalable, and maintainable internal admin management dashboard built for a Bangladesh-based travel agency. This project follows strict architecture rules, emphasizing robust backend validation, modular frontend components, and modern UI/UX design.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## ✨ Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Authentication System:** Secure session-based login and logout for administrators.
+- **Modern Dashboard UI:** Built with Vue 3, Inertia.js, and Bootstrap 5 for a clean, responsive, single-page application (SPA) feel.
+- **Reusable Components:** Features modular components like an Authenticated Layout (Sidebar, Navbar) that can be easily extended.
+- **Requirement-Driven:** Modules (Customers, Bookings, Services) are strategically planned and built *only* when explicit business rules are defined.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🛠️ Technology Stack
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+| Layer | Technology |
+|---|---|
+| **Backend** | PHP 8.3+, Laravel 13 |
+| **Frontend** | Vue.js 3 (Composition API) |
+| **Bridge** | Inertia.js |
+| **Styling** | Bootstrap 5, Bootstrap Icons |
+| **Database** | MySQL |
+| **Routing (Frontend)** | Ziggy |
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+---
 
-## Agentic Development
+## 📂 Project Structure (Tree)
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+Here is the high-level overview of the important directories and files in this project:
 
-```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+```text
+Travel-Agency-Admin-Website/
+├── app/
+│   ├── Http/Controllers/     # Application logic (e.g., Auth, Dashboard)
+│   └── Models/               # Eloquent Models (e.g., User)
+├── bootstrap/                # Laravel bootstrap files
+├── config/                   # Configuration files
+├── database/
+│   ├── migrations/           # Database schema definitions
+│   └── seeders/              # Database seeders (e.g., Admin User)
+├── docs/                     # Project documentation (e.g., PROJECT_STATE.md)
+├── public/                   # Publicly accessible assets and entry point
+├── resources/
+│   ├── js/
+│   │   ├── Layouts/          # Reusable Vue layouts (e.g., AuthenticatedLayout)
+│   │   ├── Pages/            # Vue page components (e.g., Auth/Login, Dashboard)
+│   │   └── app.js            # Main frontend entry point (Inertia & Vue setup)
+│   ├── sass/                 # Custom styling (app.scss)
+│   └── views/
+│       └── app.blade.php     # Main Blade template for Inertia
+├── routes/
+│   ├── web.php               # Web routes for Laravel
+│   └── console.php           # Console commands
+├── AGENTS.md                 # Core AI rules and project workflow guidelines
+├── package.json              # NPM dependencies
+├── vite.config.js            # Vite configuration
+└── README.md                 # This file
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+---
 
-## Contributing
+## 🚀 Getting Started
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Follow these instructions to get a copy of the project up and running on your local machine for development and testing.
 
-## Code of Conduct
+### Prerequisites
+- **PHP** >= 8.3
+- **Composer**
+- **Node.js** & **NPM**
+- **MySQL**
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Installation
 
-## Security Vulnerabilities
+1. **Clone the repository:**
+   ```bash
+   git clone <repository-url>
+   cd Travel-Agency-Admin-Website
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+2. **Install PHP dependencies:**
+   ```bash
+   composer install
+   ```
 
-## License
+3. **Install NPM dependencies:**
+   ```bash
+   npm install
+   ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+4. **Environment Setup:**
+   Copy the example `.env` file and configure your database settings.
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
+
+5. **Database Migration & Seeding:**
+   Run the migrations and seed the database with the initial admin user.
+   ```bash
+   php artisan migrate:fresh --seed
+   ```
+   *(Default Admin: `admin@example.com` / `password`)*
+
+6. **Run the Application:**
+   Start the Laravel local development server and the Vite dev server in separate terminals:
+   ```bash
+   php artisan serve
+   ```
+   ```bash
+   npm run dev
+   ```
+
+---
+
+## 📝 Documentation & Workflow
+
+This project is built under strict guidelines defined in `AGENTS.md`. 
+The current state of the project, including recent changes, bug fixes, and architecture decisions, is continuously maintained in [`docs/PROJECT_STATE.md`](docs/PROJECT_STATE.md). 
+
+**Important:** This `README.md` and `PROJECT_STATE.md` are dynamically updated after every major phase or feature addition.
