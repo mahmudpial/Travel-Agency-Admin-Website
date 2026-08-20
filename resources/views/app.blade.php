@@ -6,6 +6,7 @@
 
         <title inertia>{{ config('app.name', 'Travel Agency Admin') }}</title>
 
+        @routes
         @vite(['resources/js/app.js', "resources/sass/app.scss"])
         @inertiaHead
     </head>
