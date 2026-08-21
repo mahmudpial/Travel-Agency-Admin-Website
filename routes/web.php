@@ -13,6 +13,17 @@ Route::middleware('guest')->group(function () {
     Route::post('login', [LoginController::class, 'store']);
 });
 
+// Test Error Pages
+Route::get('/403-test', function () {
+    abort(403);
+});
+Route::get('/404-test', function () {
+    abort(404);
+});
+Route::get('/500-test', function () {
+    abort(500);
+});
+
 Route::middleware('auth')->group(function () {
     Route::post('logout', [LoginController::class, 'destroy'])->name('logout');
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
