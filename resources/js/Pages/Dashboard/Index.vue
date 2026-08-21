@@ -25,7 +25,8 @@ const showDemoModal = ref(false);
 const tableColumns = [
     { key: 'name', label: 'Name' },
     { key: 'email', label: 'Email' },
-    { key: 'status', label: 'Status' }
+    { key: 'status', label: 'Status' },
+    { key: 'actions', label: 'Actions' }
 ];
 
 const tableData = [
@@ -205,6 +206,13 @@ const triggerErrorToast = () => {
                                                     :type="item.status === 'Active' ? 'success' : 'warning'" 
                                                 />
                                             </td>
+                                            <td>
+                                                <div class="d-flex gap-1">
+                                                    <button class="btn btn-sm btn-light text-primary py-0" title="View"><i class="bi bi-eye"></i></button>
+                                                    <button class="btn btn-sm btn-light text-success py-0" title="Edit"><i class="bi bi-pencil"></i></button>
+                                                    <button class="btn btn-sm btn-light text-danger py-0" title="Delete"><i class="bi bi-trash"></i></button>
+                                                </div>
+                                            </td>
                                         </template>
                                     </DataTable>
                                 </div>
@@ -282,13 +290,13 @@ const triggerErrorToast = () => {
                             id="demoConfirmModal" 
                             title="Delete Item" 
                             message="Are you sure you want to delete this dummy item? This cannot be undone." 
-                            @confirm="page.props.flash = { ...page.props.flash, success: 'Item deleted successfully!' }"
+                            @confirm="page.props.flash = { error: null, success: 'Item deleted successfully!' }"
                         />
                     </div>
                 </div>
             </div>
             <div class="col-lg-4">
-                <div class="card border-0 shadow-sm rounded-4 h-100 bg-primary text-white position-relative overflow-hidden">
+                <div class="card border-0 shadow-sm rounded-4 bg-primary text-white position-relative overflow-hidden">
                     <div class="position-absolute top-0 end-0 p-4 opacity-25">
                         <i class="bi bi-airplane" style="font-size: 8rem; transform: rotate(45deg);"></i>
                     </div>
