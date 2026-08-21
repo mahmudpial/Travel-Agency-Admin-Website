@@ -9,12 +9,18 @@ import DataTable from '@/Components/DataTable.vue';
 import ConfirmDialog from '@/Components/ConfirmDialog.vue';
 import FormSelect from '@/Components/FormSelect.vue';
 import FileUploader from '@/Components/FileUploader.vue';
+import AppModal from '@/Components/AppModal.vue';
+import Pagination from '@/Components/Pagination.vue';
+import FormDatePicker from '@/Components/FormDatePicker.vue';
+import AppTabs from '@/Components/AppTabs.vue';
 
 const page = usePage();
 const demoText = ref('');
 const isSubmitting = ref(false);
 const selectedOption = ref('');
 const selectedFile = ref(null);
+const demoDate = ref('');
+const showDemoModal = ref(false);
 
 const tableColumns = [
     { key: 'name', label: 'Name' },
@@ -186,7 +192,7 @@ const triggerErrorToast = () => {
                         </div>
 
                         <div class="mt-4 p-4 border rounded bg-light">
-                            <h6 class="fw-bold mb-3">🗂️ Advanced Components Demo (DataTable & EmptyState)</h6>
+                            <h6 class="fw-bold mb-3">🗂️ Advanced Components Demo (Phase 2.2)</h6>
                             <div class="card border-0 shadow-sm">
                                 <div class="card-body p-0">
                                     <DataTable :columns="tableColumns" :items="tableData">
@@ -209,6 +215,68 @@ const triggerErrorToast = () => {
                                 </div>
                             </div>
                         </div>
+
+                        <div class="mt-4 p-4 border rounded bg-light">
+                            <h6 class="fw-bold mb-3">🧩 Phase 2.5 New Components Demo</h6>
+                            
+                            <div class="mb-4">
+                                <label class="d-block mb-2 text-muted small fw-bold">8. FormDatePicker</label>
+                                <div style="max-width: 300px;">
+                                    <FormDatePicker 
+                                        id="demo-date" 
+                                        v-model="demoDate" 
+                                        label="Select Travel Date" 
+                                        placeholder="YYYY-MM-DD" 
+                                    />
+                                    <div class="small text-muted mt-1" v-if="demoDate">
+                                        Selected: <span class="fw-bold text-primary">{{ demoDate }}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="d-block mb-2 text-muted small fw-bold">9. AppTabs</label>
+                                <AppTabs 
+                                    :tabs="[
+                                        { id: 'tab1', label: 'Basic Info', icon: 'bi-info-circle' },
+                                        { id: 'tab2', label: 'Documents', icon: 'bi-file-earmark' }
+                                    ]"
+                                >
+                                    <template #tab1>
+                                        <p class="mb-0 text-muted">This is the content for the basic info tab. Great for dividing long forms.</p>
+                                    </template>
+                                    <template #tab2>
+                                        <p class="mb-0 text-muted">This is the documents tab content. You could put a FileUploader here.</p>
+                                    </template>
+                                </AppTabs>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="d-block mb-2 text-muted small fw-bold">10. AppModal & 11. Pagination</label>
+                                <div class="d-flex gap-2 mb-3">
+                                    <button class="btn btn-outline-primary" @click="showDemoModal = true">
+                                        Open Vue Modal
+                                    </button>
+                                </div>
+                                <div class="border rounded p-3 bg-white">
+                                    <p class="text-muted small mb-0 text-center">Dummy Pagination Component</p>
+                                    <Pagination :links="[
+                                        { url: null, label: '&laquo; Previous', active: false },
+                                        { url: '#', label: '1', active: true },
+                                        { url: '#', label: '2', active: false },
+                                        { url: '#', label: 'Next &raquo;', active: false }
+                                    ]" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <AppModal id="demoAppModal" title="Demo Custom Modal" v-model:show="showDemoModal">
+                            <p class="text-muted">This modal is completely managed by Vue state (<code>v-model:show</code>) rather than standard Bootstrap data-attributes. This makes it easier to open/close from code after an API call.</p>
+                            <template #footer>
+                                <button type="button" class="btn btn-secondary" @click="showDemoModal = false">Close</button>
+                                <button type="button" class="btn btn-primary" @click="showDemoModal = false">Save changes</button>
+                            </template>
+                        </AppModal>
 
                         <ConfirmDialog 
                             id="demoConfirmModal" 

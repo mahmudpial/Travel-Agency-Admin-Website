@@ -13,6 +13,7 @@ This document tracks the current state of the project, major architecture decisi
 - **Phase 2.2:** Advanced Reusable Vue Components (DataTable, EmptyState, ConfirmDialog, FormSelect, FileUploader)
 - **Phase 2.3:** Admin Profile Module (Profile and Password Update)
 - **Phase 2.4:** Error Pages & Roles Foundation (Inertia Custom Error Pages, Spatie Laravel Permission)
+- **Phase 2.5:** Additional Reusable Components (AppModal, Pagination, FormDatePicker via flatpickr, AppTabs)
 
 ---
 
