@@ -8,8 +8,12 @@ const page = usePage();
 const user = page.props.user;
 
 const profileForm = useForm({
+    _method: 'patch',
     name: user.name,
     email: user.email,
+    phone: user.phone || '',
+    designation: user.designation || '',
+    avatar: null,
 });
 
 const passwordForm = useForm({
@@ -19,8 +23,9 @@ const passwordForm = useForm({
 });
 
 const updateProfile = () => {
-    profileForm.patch(route('profile.update'), {
+    profileForm.post(route('profile.update'), {
         preserveScroll: true,
+        forceFormData: true,
     });
 };
 
@@ -58,6 +63,27 @@ const updatePassword = () => {
                     </div>
                     <div class="card-body p-4">
                         <form @submit.prevent="updateProfile">
+                            <!-- Avatar Preview & Upload -->
+                            <div class="mb-4 d-flex align-items-center gap-3">
+                                <div 
+                                    class="rounded-circle bg-light border d-flex align-items-center justify-content-center overflow-hidden" 
+                                    style="width: 80px; height: 80px;"
+                                >
+                                    <img v-if="user.avatar_url" :src="user.avatar_url" alt="Avatar" class="w-100 h-100 object-fit-cover" />
+                                    <i v-else class="bi bi-person text-secondary" style="font-size: 2rem;"></i>
+                                </div>
+                                <div>
+                                    <label class="form-label mb-1">Profile Picture</label>
+                                    <input 
+                                        type="file" 
+                                        class="form-control form-control-sm" 
+                                        accept="image/png, image/jpeg" 
+                                        @input="profileForm.avatar = $event.target.files[0]" 
+                                    />
+                                    <div class="small text-danger mt-1" v-if="profileForm.errors.avatar">{{ profileForm.errors.avatar }}</div>
+                                </div>
+                            </div>
+
                             <FormInput 
                                 v-model="profileForm.name" 
                                 label="Name" 
@@ -75,6 +101,27 @@ const updatePassword = () => {
                                 :error="profileForm.errors.email"
                                 required
                             />
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <FormInput 
+                                        v-model="profileForm.phone" 
+                                        label="Phone Number" 
+                                        id="phone" 
+                                        type="text"
+                                        :error="profileForm.errors.phone"
+                                    />
+                                </div>
+                                <div class="col-md-6">
+                                    <FormInput 
+                                        v-model="profileForm.designation" 
+                                        label="Designation (e.g. Manager)" 
+                                        id="designation" 
+                                        type="text"
+                                        :error="profileForm.errors.designation"
+                                    />
+                                </div>
+                            </div>
 
                             <div class="mt-4 text-end">
                                 <LoadingButton 

@@ -9,10 +9,24 @@ A secure, scalable, and maintainable internal admin management dashboard built f
 ## ✨ Features
 
 - **Authentication & Profile:** Secure session-based login and logout, plus a complete Profile Module for admins to update their information and passwords securely.
+## ✨ Features
+
+- **Authentication & Profile:** Secure session-based login and logout, plus a complete Profile Module for admins to update their information and passwords securely.
 - **Roles & Permissions:** Foundation built with `spatie/laravel-permission`. Includes predefined roles (Super Admin, Admin, Manager, Staff) to manage access control.
 - **Modern Dashboard UI:** Built with Vue 3, Inertia.js, and Bootstrap 5 for a clean, responsive, single-page application (SPA) feel.
 - **Custom Error Pages:** Beautiful, branded error pages (403, 404, 500) integrated directly with Inertia.js.
 - **Reusable Components:** Includes a library of highly reusable UI components (`FormInput`, `FormSelect`, `FileUploader`, `LoadingButton`, `StatusBadge`, `ToastNotification`, `DataTable`, `EmptyState`, `ConfirmDialog`, `AppModal`, `Pagination`, `FormDatePicker`, `AppTabs`) and an Authenticated Layout to ensure consistency and speed up development.
+
+## 🚀 Project Progress
+
+- ✅ **Phase 1:** Core Foundation (Laravel 13, Vue, Inertia, Bootstrap 5)
+- ✅ **Phase 2.1:** Shared UI Layouts & Components
+- ✅ **Phase 2.2:** Advanced Reusable Vue Components
+- ✅ **Phase 2.3:** Admin Profile Module (Security & Password)
+- ✅ **Phase 2.4:** Error Pages & Roles Foundation
+- ✅ **Phase 2.5:** Additional Reusable Components
+- ✅ **Phase 2.6:** Profile Settings Upgrade (Avatar upload, designation, phone)
+- ⏳ **Phase 3:** Core Business Modules (Pending Requirements)
 - **Requirement-Driven:** Modules (Customers, Bookings, Services) are strategically planned and built *only* when explicit business rules are defined.
 
 ---

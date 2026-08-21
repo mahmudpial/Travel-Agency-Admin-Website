@@ -13,7 +13,22 @@ This document tracks the current state of the project, major architecture decisi
 - **Phase 2.2:** Advanced Reusable Vue Components (DataTable, EmptyState, ConfirmDialog, FormSelect, FileUploader)
 - **Phase 2.3:** Admin Profile Module (Profile and Password Update)
 - **Phase 2.4:** Error Pages & Roles Foundation (Inertia Custom Error Pages, Spatie Laravel Permission)
-- **Phase 2.5:** Additional Reusable Components (AppModal, Pagination, FormDatePicker via flatpickr, AppTabs)
+- **Phase 2.5:** Advanced Reusable Components (AppModal, Pagination, FormDatePicker via flatpickr, AppTabs)
+- **Phase 2.6:** Profile Settings Upgrade (Avatar support, enhanced fields)
+
+### 🔹 Phase 2.5: Advanced Reusable Components (Completed)
+- Custom `AppModal` managed via Vue reactive state.
+- `Pagination` UI component matching Laravel paginator structure.
+- Date Picker (`FormDatePicker`) integration using `flatpickr`.
+- `AppTabs` component for multi-step or tabbed forms.
+- Re-organized demo section in `Dashboard/Index.vue`.
+
+### 🔹 Phase 2.6: Profile Settings Upgrade (Completed)
+- Added `phone`, `designation`, and `avatar` columns to `users` table.
+- Implemented file upload handling securely via Laravel Storage.
+- Refactored `Profile/Edit.vue` to support multipart form data and avatar preview.
+- Updated `AuthenticatedLayout.vue` to dynamically show user avatars in sidebar and top navbar.
+- Removed confusing/dummy links from the user dropdown.
 
 ---
 

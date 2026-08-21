@@ -40,10 +40,14 @@ import ToastNotification from '@/Components/ToastNotification.vue';
 
             <div class="p-3 border-top border-secondary">
                 <div class="d-flex align-items-center text-white text-decoration-none">
-                    <div class="rounded-circle bg-secondary d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px;">
-                        <i class="bi bi-person-fill"></i>
+                    <div class="rounded-circle bg-secondary border border-secondary d-flex align-items-center justify-content-center me-2 overflow-hidden flex-shrink-0" style="width: 32px; height: 32px;">
+                        <img v-if="$page.props.auth?.user?.avatar_url" :src="$page.props.auth.user.avatar_url" alt="Avatar" class="w-100 h-100 object-fit-cover" />
+                        <i v-else class="bi bi-person-fill"></i>
                     </div>
-                    <strong>{{ $page.props.auth?.user?.name || 'Admin User' }}</strong>
+                    <div class="d-flex flex-column text-truncate">
+                        <strong class="text-truncate">{{ $page.props.auth?.user?.name || 'Admin User' }}</strong>
+                        <small class="text-white-50" style="font-size: 0.75rem;" v-if="$page.props.auth?.user?.designation">{{ $page.props.auth.user.designation }}</small>
+                    </div>
                 </div>
             </div>
         </aside>
@@ -76,18 +80,17 @@ import ToastNotification from '@/Components/ToastNotification.vue';
                         </button>
                         
                         <div class="dropdown">
-                            <button class="btn btn-light dropdown-toggle border-0 rounded-pill px-3 py-2 d-flex align-items-center gap-2" type="button" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button class="btn btn-light dropdown-toggle border-0 rounded-pill ps-2 pe-3 py-1 d-flex align-items-center gap-2" type="button" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="rounded-circle bg-secondary d-flex align-items-center justify-content-center overflow-hidden" style="width: 32px; height: 32px;">
+                                    <img v-if="$page.props.auth?.user?.avatar_url" :src="$page.props.auth.user.avatar_url" alt="Avatar" class="w-100 h-100 object-fit-cover" />
+                                    <i v-else class="bi bi-person-fill text-white"></i>
+                                </div>
                                 <span class="fw-medium text-dark">{{ $page.props.auth?.user?.name || 'Account' }}</span>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end shadow border-0" aria-labelledby="userMenu">
                                 <li>
                                     <Link class="dropdown-item d-flex align-items-center gap-2 py-2" :href="route('profile.edit')">
                                         <i class="bi bi-person-circle text-secondary"></i> Profile
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link class="dropdown-item d-flex align-items-center gap-2 py-2" href="#">
-                                        <i class="bi bi-gear text-secondary"></i> Settings
                                     </Link>
                                 </li>
                                 <li><hr class="dropdown-divider"></li>
