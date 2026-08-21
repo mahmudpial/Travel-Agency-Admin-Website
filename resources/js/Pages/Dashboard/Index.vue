@@ -1,6 +1,43 @@
 <script setup>
-import { Head } from '@inertiajs/vue3';
+import { ref } from 'vue';
+import { Head, usePage } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import FormInput from '@/Components/FormInput.vue';
+import LoadingButton from '@/Components/LoadingButton.vue';
+import StatusBadge from '@/Components/StatusBadge.vue';
+import DataTable from '@/Components/DataTable.vue';
+import ConfirmDialog from '@/Components/ConfirmDialog.vue';
+import FormSelect from '@/Components/FormSelect.vue';
+import FileUploader from '@/Components/FileUploader.vue';
+
+const page = usePage();
+const demoText = ref('');
+const isSubmitting = ref(false);
+const selectedOption = ref('');
+const selectedFile = ref(null);
+
+const tableColumns = [
+    { key: 'name', label: 'Name' },
+    { key: 'email', label: 'Email' },
+    { key: 'status', label: 'Status' }
+];
+
+const tableData = [
+    { id: 1, name: 'John Doe', email: 'john@example.com', status: 'Active' },
+    { id: 2, name: 'Jane Doe', email: 'jane@example.com', status: 'Pending' }
+];
+
+const simulateSubmit = () => {
+    isSubmitting.value = true;
+    setTimeout(() => {
+        isSubmitting.value = false;
+        page.props.flash = { ...page.props.flash, success: 'Demo form submitted successfully!', error: null, warning: null, info: null };
+    }, 1500);
+};
+
+const triggerErrorToast = () => {
+    page.props.flash = { ...page.props.flash, error: 'This is a demo error message.', success: null, warning: null, info: null };
+};
 </script>
 
 <template>
@@ -84,10 +121,101 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
                     <div class="card-body p-4">
                         <p class="text-muted">Welcome to the Travel Agency Admin System! The business modules are currently being prepared.</p>
                         
-                        <div class="text-center py-5">
-                            <i class="bi bi-activity text-secondary opacity-25" style="font-size: 4rem;"></i>
-                            <h6 class="mt-3 text-muted">No recent activity yet</h6>
+                        <div class="mt-4 p-4 border rounded bg-light">
+                            <h6 class="fw-bold mb-3">🛠️ Basic Components Demo</h6>
+                            
+                            <div class="mb-4">
+                                <label class="d-block mb-2 text-muted small fw-bold">1. StatusBadge</label>
+                                <div class="d-flex gap-2">
+                                    <StatusBadge status="Confirmed" type="success" />
+                                    <StatusBadge status="Pending" type="warning" />
+                                    <StatusBadge status="Cancelled" type="danger" />
+                                    <StatusBadge status="Processing" type="info" />
+                                </div>
+                            </div>
+
+                            <div class="mb-4 row">
+                                <div class="col-md-6">
+                                    <label class="d-block mb-2 text-muted small fw-bold">2. FormInput</label>
+                                    <FormInput 
+                                        v-model="demoText" 
+                                        label="Demo Input Field" 
+                                        placeholder="Type something here..." 
+                                        helpText="This is a reusable form input component." 
+                                    />
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="d-block mb-2 text-muted small fw-bold">3. FormSelect</label>
+                                    <FormSelect 
+                                        v-model="selectedOption" 
+                                        label="Demo Select Dropdown" 
+                                        :options="[{label: 'Active', value: 'active'}, {label: 'Inactive', value: 'inactive'}]"
+                                    />
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="d-block mb-2 text-muted small fw-bold">4. FileUploader</label>
+                                <FileUploader 
+                                    v-model="selectedFile" 
+                                    label="Upload Document" 
+                                    accept=".pdf,image/*" 
+                                    helpText="Accepted formats: PDF, JPG, PNG"
+                                />
+                                <div class="small text-muted mt-1" v-if="selectedFile">
+                                    Selected: <span class="fw-bold text-primary">{{ selectedFile.name }}</span>
+                                </div>
+                            </div>
+
+                            <div class="mb-2">
+                                <label class="d-block mb-2 text-muted small fw-bold">5. LoadingButton, 6. ToastNotification & 7. ConfirmDialog</label>
+                                <div class="d-flex gap-2">
+                                    <LoadingButton @click="simulateSubmit" :loading="isSubmitting" variant="primary">
+                                        <i v-if="!isSubmitting" class="bi bi-send me-1"></i> Submit Demo
+                                    </LoadingButton>
+                                    
+                                    <button @click="triggerErrorToast" class="btn btn-outline-danger">
+                                        Test Error Toast
+                                    </button>
+
+                                    <button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#demoConfirmModal">
+                                        Test Confirm Dialog
+                                    </button>
+                                </div>
+                            </div>
                         </div>
+
+                        <div class="mt-4 p-4 border rounded bg-light">
+                            <h6 class="fw-bold mb-3">🗂️ Advanced Components Demo (DataTable & EmptyState)</h6>
+                            <div class="card border-0 shadow-sm">
+                                <div class="card-body p-0">
+                                    <DataTable :columns="tableColumns" :items="tableData">
+                                        <template #row="{ item }">
+                                            <td>{{ item.name }}</td>
+                                            <td>{{ item.email }}</td>
+                                            <td>
+                                                <StatusBadge 
+                                                    :status="item.status" 
+                                                    :type="item.status === 'Active' ? 'success' : 'warning'" 
+                                                />
+                                            </td>
+                                        </template>
+                                    </DataTable>
+                                </div>
+                            </div>
+                            <div class="mt-3 card border-0 shadow-sm">
+                                <div class="card-body p-0">
+                                    <DataTable :columns="tableColumns" :items="[]" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <ConfirmDialog 
+                            id="demoConfirmModal" 
+                            title="Delete Item" 
+                            message="Are you sure you want to delete this dummy item? This cannot be undone." 
+                            @confirm="page.props.flash = { ...page.props.flash, success: 'Item deleted successfully!' }"
+                        />
                     </div>
                 </div>
             </div>

@@ -9,6 +9,8 @@ This document tracks the current state of the project, major architecture decisi
 **Completed Phases:**
 - **Phase 1:** Foundational Setup & Authentication (Laravel 13, Vue 3, Inertia.js, Bootstrap 5)
 - **Phase 2:** Admin Authenticated Layout & Dashboard UI (Reusable UI Foundation)
+- **Phase 2.1:** Core Reusable Vue Components (FormInput, LoadingButton, StatusBadge, ToastNotification)
+- **Phase 2.2:** Advanced Reusable Vue Components (DataTable, EmptyState, ConfirmDialog, FormSelect, FileUploader)
 
 ---
 

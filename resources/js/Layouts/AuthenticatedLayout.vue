@@ -1,5 +1,6 @@
 <script setup>
 import { Link } from '@inertiajs/vue3';
+import ToastNotification from '@/Components/ToastNotification.vue';
 </script>
 
 <template>
@@ -111,6 +112,9 @@ import { Link } from '@inertiajs/vue3';
                 <slot />
             </main>
         </div>
+        
+        <!-- Global Toast Notifications -->
+        <ToastNotification />
     </div>
 </template>
 

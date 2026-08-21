@@ -10,7 +10,7 @@ A secure, scalable, and maintainable internal admin management dashboard built f
 
 - **Authentication System:** Secure session-based login and logout for administrators.
 - **Modern Dashboard UI:** Built with Vue 3, Inertia.js, and Bootstrap 5 for a clean, responsive, single-page application (SPA) feel.
-- **Reusable Components:** Features modular components like an Authenticated Layout (Sidebar, Navbar) that can be easily extended.
+- **Reusable Components:** Includes a library of highly reusable UI components (`FormInput`, `FormSelect`, `FileUploader`, `LoadingButton`, `StatusBadge`, `ToastNotification`, `DataTable`, `EmptyState`, `ConfirmDialog`) and an Authenticated Layout to ensure consistency and speed up development.
 - **Requirement-Driven:** Modules (Customers, Bookings, Services) are strategically planned and built *only* when explicit business rules are defined.
 
 ---
@@ -46,6 +46,7 @@ Travel-Agency-Admin-Website/
 ├── public/                   # Publicly accessible assets and entry point
 ├── resources/
 │   ├── js/
+│   │   ├── Components/       # Reusable UI components (FormInput, Toasts, etc.)
 │   │   ├── Layouts/          # Reusable Vue layouts (e.g., AuthenticatedLayout)
 │   │   ├── Pages/            # Vue page components (e.g., Auth/Login, Dashboard)
 │   │   └── app.js            # Main frontend entry point (Inertia & Vue setup)
