@@ -81,7 +81,7 @@ import ToastNotification from '@/Components/ToastNotification.vue';
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end shadow border-0" aria-labelledby="userMenu">
                                 <li>
-                                    <Link class="dropdown-item d-flex align-items-center gap-2 py-2" href="#">
+                                    <Link class="dropdown-item d-flex align-items-center gap-2 py-2" :href="route('profile.edit')">
                                         <i class="bi bi-person-circle text-secondary"></i> Profile
                                     </Link>
                                 </li>
